@@ -1,14 +1,15 @@
 .message
   position: absolute
-  bottom: 40px
-  left: 40px
+  top: 36px
+  left: 50%
+  transform: translate(-50%, 0)
   padding: 20px
   border-radius: 4px
   background-color: $color-msg-back
   color: $color-msg-text
   z-index: 2
   +shadow()
-  +animation-slide-in-left()
+  +animation-slide-in-top()
 
   &--warning
     background-color: $color-msg-warning-back
