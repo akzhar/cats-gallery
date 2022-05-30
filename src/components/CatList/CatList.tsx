@@ -1,36 +1,54 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CatItem from '@components/CatItem';
+import Hint from '@components/Hint';
 import { TState } from '@store/reducer';
 import { TCat } from '@store/reducerCats';
+import ActionCreator from '@store/actions';
 
-type TCatList = {
-  isFavorites?: boolean
-}
+import useOnScreen from '../../hooks/useOnScreen';
 
-const CatList: React.FC<TCatList> = ({ isFavorites = false }: TCatList) => {
+const CatList: React.FC = () => {
 
-  const cats: TCat[] = useSelector((state: TState) => isFavorites? state.cats.favorites : state.cats.all);
+  const cats: TCat[] = useSelector((state: TState) => state.cats.items);
   const isLoading: boolean = useSelector((state: TState) => state.cats.isLoading);
 
+  const lastItemRef = useRef(null);
+  const isLastItemOnScreen = useOnScreen(lastItemRef, [cats]);
+
+  const [needLoadMore, setNeedLoadMore] = useState(false);
+  const [pageNum, setPageNum] = useState(0);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cats.length === 0 || isLastItemOnScreen) {
+      setPageNum(prev => prev + 1);
+      setNeedLoadMore(true);
+    }
+  }, [isLastItemOnScreen]);
+
+  useEffect(() => {
+    if (needLoadMore) {
+      dispatch(ActionCreator.loadCats({pageNum}));
+      setNeedLoadMore(false);
+    }
+  }, [needLoadMore]);
+
   return (
-    cats.length
-      ?
     <>
       <ul className="cat-list">
-        {
-          cats.map((cat: TCat) => (
-            <li key={cat.id}>
-              <CatItem cat={cat}/>
-            </li>
-          ))
-        }
+        {cats.map((cat: TCat, index: number) => {
+            const isLastItem = Boolean(index === cats.length - 1);
+            return isLastItem ?
+              <li key={cat.id} ref={lastItemRef}><CatItem cat={cat} /></li>
+            :
+              <li key={cat.id}><CatItem cat={cat} /></li>;
+          })}
       </ul>
-      {isLoading && <p>... загружаем ещё котиков ...</p>}
+      {isLoading && <Hint message={`... загружаем${cats.length ? ' ещё ' : ' '}котиков ...`} />}
     </>
-      :
-    <p>{isLoading ? 'Загружаем котиков...' : 'Тут пока что пусто...'}</p>
   )
 };
 

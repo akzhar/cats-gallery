@@ -35,6 +35,10 @@ interface IRemoveCatFromFavorites {
   catId: string
 }
 
+interface ILoadCats {
+  pageNum: number
+}
+
 const ActionCreator = {
   reset: () => {
     return (dispatch: (action: TAction) => void) => {
@@ -60,15 +64,19 @@ const ActionCreator = {
       }, 1500);
     }
   },
-  loadCats: () => {
+  loadCats: ({ pageNum }: ILoadCats) => {
+    // TODO: api key hide
+    // TODO: unique?
+    console.log('pageNum', pageNum);
     const API_URL = 'https://api.thecatapi.com/v1/images/search';
     const API_KEY = '494b6b39-efb8-492b-aa92-c050914312a0';
-    const catsCount = 10;
+    const LOAD_SIZE = 20;
     return (dispatch: (action: TAction) => void) => {
       dispatch({ type: ActionTypes.SET_IS_LOADING_TRUE});
-      fetch(`${API_URL}?limit=${catsCount}`, { headers: {method: 'GET', 'x-api-key': API_KEY} })
+      const url = `${API_URL}?limit=${LOAD_SIZE}&mime_types=uniqueItems&page=${pageNum}`;
+      fetch(url, { headers: {method: 'GET', 'x-api-key': API_KEY} })
         .then(res => res.json())
-        .then(data => {
+        .then((data) => {
           const newCats: TCat[] = data.map(({id, url}: any) => { return { id, url, isLiked: false } });
           dispatch({ type: ActionTypes.LOAD_CATS, payload: newCats });
           dispatch({ type: ActionTypes.SET_IS_LOADING_FALSE});

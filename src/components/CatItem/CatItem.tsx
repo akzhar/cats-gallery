@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { TCat } from '@store/reducerCats';
-
 import ButtonLike from '@components/ButtonLike';
 import ActionCreator from '@store/actions';
 
-type TCatItem = {
+type TCatItemProps = {
   cat: TCat
 };
 
-const CatItem: React.FC<TCatItem> = ({ cat }: TCatItem) => {
+const CatItem: React.FC<TCatItemProps> = ({ cat }: TCatItemProps) => {
 
   const dispatch = useDispatch();
 
@@ -20,9 +19,9 @@ const CatItem: React.FC<TCatItem> = ({ cat }: TCatItem) => {
     <div className="cat-list__item">
       <img src={cat.url} height="225" alt="The cat"/>
       <ButtonLike
-        isActive={isLiked}
+        isActive={cat.isLiked}
         clickHandler={() => {
-          setIsLiked(true);
+          setIsLiked(!isLiked);
           if (cat.isLiked) {
             dispatch(ActionCreator.removeCatFromFavorites({ catId: cat.id }));
             dispatch(ActionCreator.setInfoMessage(
