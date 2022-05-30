@@ -1,9 +1,9 @@
 {
-  "name": "shopping-list-test-task",
+  "name": "cats-gallery-test-task",
   "version": "1.0.0",
   "private": true,
   "author": "akzhar.taov@yandex.ru",
-  "description": "shopping-list-test-task",
+  "description": "cats-gallery-test-task",
   "scripts": {
     "start": "node index.js",
     "deploy": "git add . && git commit -m \"heroku deploy\" && git push heroku master",
@@ -15,8 +15,8 @@
     "express": "4.17.1"
   },
   "engines": {
-    "node": "14.18.0",
-    "npm": "6.14.15"
+    "node": "12.18.3",
+    "npm": "6.14.16"
   },
   "devDependencies": {}
 }
