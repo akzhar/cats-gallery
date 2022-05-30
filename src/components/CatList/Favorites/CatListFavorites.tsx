@@ -15,8 +15,8 @@ const CatListFavorites: React.FC = () => {
       ?
     <>
       <ul className="cat-list">
-        {cats.map((cat: TCat) => (
-          <li key={cat.id}><CatItem cat={cat} /></li>
+        {cats.map((cat: TCat, index: number) => (
+          <li key={`${cat.id}-${index}`}><CatItem cat={cat} /></li>
         ))}
       </ul>
     </>

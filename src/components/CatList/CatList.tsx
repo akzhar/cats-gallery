@@ -31,7 +31,7 @@ const CatList: React.FC = () => {
 
   useEffect(() => {
     if (needLoadMore) {
-      dispatch(ActionCreator.loadCats({pageNum}));
+      dispatch(ActionCreator.loadCats({pageIndex: pageNum - 1}));
       setNeedLoadMore(false);
     }
   }, [needLoadMore]);
@@ -42,9 +42,9 @@ const CatList: React.FC = () => {
         {cats.map((cat: TCat, index: number) => {
             const isLastItem = Boolean(index === cats.length - 1);
             return isLastItem ?
-              <li key={cat.id} ref={lastItemRef}><CatItem cat={cat} /></li>
+              <li key={`${cat.id}-${index}`} ref={lastItemRef}><CatItem cat={cat} /></li>
             :
-              <li key={cat.id}><CatItem cat={cat} /></li>;
+              <li key={`${cat.id}-${index}`}><CatItem cat={cat} /></li>;
           })}
       </ul>
       {isLoading && <Hint message={`... загружаем${cats.length ? ' ещё ' : ' '}котиков ...`} />}
