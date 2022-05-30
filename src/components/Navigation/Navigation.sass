@@ -1,0 +1,26 @@
+.nav
+  padding: 0 62px
+  background-color: $color-nav-back
+
+  &__list
+    display: flex
+    list-style: none
+    padding: 0
+    margin: 0
+
+  &__item
+
+    & a
+      display: block
+      padding: 23px 18px
+      color: $color-nav-btn-text
+      text-decoration: none
+
+    &--active
+      pointer-events: none!important
+      cursor: default!important
+
+    &:hover a,
+    &--active a
+      color: $color-nav-btn-text--hover
+      background-color: $color-nav-btn-back--hover

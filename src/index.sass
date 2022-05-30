@@ -1,0 +1,26 @@
+@import ./consts/const.sass
+@import ./mixin.sass
+
+@font-face
+  font-family: 'Roboto'
+  font-display: swap
+  src: url('./assets/fonts/Roboto.woff2') format('woff2')
+  src: url('./assets/fonts/Roboto.woff') format('woff')
+
+html, body
+  margin: 0
+  font-family: 'Roboto', Arial, sans-serif
+  font-weight: 400
+  font-size: 14px
+  line-height: 21px
+  color: $color-app-text
+
+.visually-hidden
+  +hide()
+
+@import ./components/Layout/Layout.sass
+@import ./components/ButtonLike/ButtonLike.sass
+@import ./components/Message/Message.sass
+@import ./components/Navigation/Navigation.sass
+@import ./components/CatList/CatList.sass
+@import ./components/CatItem/CatItem.sass
