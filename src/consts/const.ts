@@ -4,5 +4,5 @@ type TAppRoute = {
 
 export const AppRoutes: TAppRoute = {
   HOME: { url: '/', label: 'Все котики' },
-  LIKES: { url: '/favorites', label: 'Любимые котики'}
+  FAVORITES: { url: '/favorites', label: 'Любимые котики'}
 };

@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-
 import reducerMessage, { TMessageState } from '@store/reducerMessage';
 import reducerCats, { TCatsState } from '@store/reducerCats';
 

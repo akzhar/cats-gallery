@@ -8,11 +8,10 @@ export type TCat = {
 
 export type TCatsState = {
   isLoading: boolean,
-  all: TCat[],
-  favorites: TCat[]
+  items: TCat[]
 };
 
-const initialState: TCatsState = { isLoading: false, all: [], favorites: [] };
+const initialState: TCatsState = { isLoading: false, items: [] };
 
 const reducerCats = (state: TCatsState = initialState, action: TAction) => {
   switch (action.type) {
@@ -27,23 +26,23 @@ const reducerCats = (state: TCatsState = initialState, action: TAction) => {
     }
     case ActionTypes.LOAD_CATS: {
       const newCats: TCat[] = action.payload;
-      // TODO: unique cats only?
-      //return {...state, all: [...state.all, newCats]};
-      return {...state, all: newCats};
+      return {...state, items: [...state.items, ...newCats]};
     }
     case ActionTypes.ADD_CAT_TO_FAVORITES: {
       const catId: string = action.payload;
-      const cat = state.all.find((cat: TCat) => cat.id === catId);
+      const cat = state.items.find((cat: TCat) => cat.id === catId);
       if (cat) {
         cat.isLiked = true;
-        return {...state, favorites: [...state.favorites, cat]};
-      } else {
-        return state;
       }
+      return state;
     }
     case ActionTypes.REMOVE_CAT_FROM_FAVORITES: {
       const catId: string = action.payload;
-      return {...state, favorites: [...state.favorites.filter((cat: TCat) => cat.id !== catId)]};
+      const cat = state.items.find((cat: TCat) => cat.id === catId);
+      if (cat) {
+        cat.isLiked = false;
+      }
+      return state;
     }
     default:
       return state;

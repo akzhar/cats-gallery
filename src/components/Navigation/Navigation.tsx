@@ -2,14 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
-//import Button from '@components/Button';
 import { AppRoutes } from '@consts/const';
-
-//type THeaderProps = {
-//  children: React.ReactNode
-//};
-
-//const Navigation: React.FC<THeaderProps> = ({ children }: THeaderProps) => (
 
 const Navigation: React.FC = () => {
 
