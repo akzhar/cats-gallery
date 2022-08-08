@@ -17,7 +17,7 @@ const CatItem: React.FC<TCatItemProps> = ({ cat }: TCatItemProps) => {
 
   return (
     <div className="cat-list__item">
-      <img src={cat.url} height="225" alt="The cat"/>
+      <img src={cat.url} alt="The cat"/>
       <ButtonLike
         isActive={cat.isLiked}
         clickHandler={() => {
