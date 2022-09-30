@@ -21,7 +21,7 @@ const CatListFavorites: React.FC = () => {
       </ul>
     </>
       :
-    <Hint message="Тут пока что пусто..." />
+    <Hint message="No one kitty received your like yet..." />
   )
 };
 

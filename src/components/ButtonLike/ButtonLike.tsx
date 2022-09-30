@@ -6,8 +6,12 @@ type TButtonProps = {
 }
 
 const ButtonLike: React.FC<TButtonProps> = ({ isActive, clickHandler = () => undefined }: TButtonProps) => (
-  <button className={`button-like ${isActive && 'button-like--active'}`} onClick={clickHandler}>
-    <span className="visually-hidden">Лайк</span>
+  <button
+    className={`button-like ${isActive && 'button-like--active'}`}
+    onClick={clickHandler}
+    title={isActive ? 'Remove like' : 'Like'}
+  >
+    <span className="visually-hidden">{isActive ? 'Remove like' : 'Like'}</span>
   </button>
 );
 

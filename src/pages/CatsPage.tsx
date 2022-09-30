@@ -4,7 +4,7 @@ import CatList from '@components/CatList';
 
 const HomePage: React.FC = () => (
   <>
-    <h1 className="visually-hidden">Список всех котиков</h1>
+    <h1 className="visually-hidden">All cats</h1>
     <CatList />
   </>
 );

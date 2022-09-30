@@ -47,7 +47,7 @@ const CatList: React.FC = () => {
               <li key={`${cat.id}-${index}`}><CatItem cat={cat} /></li>;
           })}
       </ul>
-      {isLoading && <Hint message={`... загружаем${cats.length ? ' ещё ' : ' '}котиков ...`} />}
+      {isLoading && <Hint message={`... loading${cats.length ? ' more ' : ' '}kitties ...`} />}
     </>
   )
 };

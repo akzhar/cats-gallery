@@ -4,7 +4,7 @@ import CatListFavorites from '@components/CatList/Favorites';
 
 const FavoritesPage: React.FC = () =>  (
   <>
-    <h1 className="visually-hidden">Мои любимые котики</h1>
+    <h1 className="visually-hidden">My cats</h1>
     <CatListFavorites />
   </>
 );

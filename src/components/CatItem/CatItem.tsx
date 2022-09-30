@@ -25,12 +25,12 @@ const CatItem: React.FC<TCatItemProps> = ({ cat }: TCatItemProps) => {
           if (cat.isLiked) {
             dispatch(ActionCreator.removeCatFromFavorites({ catId: cat.id }));
             dispatch(ActionCreator.setInfoMessage(
-              { label: '😥', text: 'Минус 1 котик в разделе Любимые котики'}
+              { label: '😥', text: 'Oh no, kitty has been removed from the favorites'}
             ));
           } else {
             dispatch(ActionCreator.addCatToFavorites({ catId: cat.id }));
             dispatch(ActionCreator.setInfoMessage(
-              { label: '😊', text: 'Плюс 1 котик в разделе Любимые котики'}
+              { label: '😊', text: 'Welcome to my collection, kitty'}
             ));
           }
         }}

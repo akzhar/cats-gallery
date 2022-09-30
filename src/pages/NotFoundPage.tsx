@@ -10,15 +10,15 @@ const NotFoundPage: React.FC = () => {
   React.useEffect(() => {
     dispatch(ActionCreator.setWarningMessage(
       {
-        label: 'Код ошибки 404:',
-        text: 'Запрошенный ресурс не был найден...'
+        label: '404 Error:',
+        text: 'The requested resource was not found...'
       }
     ));
   });
 
   return (
     <>
-      Кажется, такой страницы не существует...
+      It seems the page you are looking for is not exists...
     </>
   )
 };
