@@ -1,15 +1,16 @@
 {
-  "name": "cats-gallery-test-task",
+  "name": "cats-gallery",
   "version": "1.0.0",
   "private": true,
   "author": "akzhar.taov@yandex.ru",
-  "description": "cats-gallery-test-task",
+  "description": "Cats gallery",
   "scripts": {
-    "start": "node index.js",
-    "deploy": "git add . && git commit -m \"heroku deploy\" && git push heroku master",
-    "logs": "heroku logs --tail",
-    "app-on": "heroku ps:scale web=1",
-    "app-off": "heroku ps:scale web=0"
+    "start": "PORT=3004 node index.js",
+    "service:enable": "systemctl enable cats-gallery",
+    "service:start": "systemctl start cats-gallery",
+    "service:stop": "systemctl stop cats-gallery",
+    "service:restart": "systemctl enable cats-gallery",
+    "service:status": "systemctl status cats-gallery"
   },
   "dependencies": {
     "express": "4.17.1"

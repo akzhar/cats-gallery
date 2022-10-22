@@ -1,6 +1,6 @@
 # Cats gallery
 
-- [Open app](https://cats-gallery-test-task.herokuapp.com/)
+- [Open app](http://80.78.241.253:3004)
 - [Design](https://bit.ly/3utxaL2)
 - [API](https://thecatapi.com)
 
